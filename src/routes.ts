@@ -9,6 +9,8 @@ import { CreateProcedureController } from "./controllers/procedure/CreateProcedu
 import { ListProcedureController } from "./controllers/procedure/ListProcedureController";
 import { UpdateProcedureController } from "./controllers/procedure/UpdateProcedureController";
 import { CheckSubscriptionController } from "./controllers/procedure/CheckSubscriptionController";
+import { CountProcedureController } from "./controllers/procedure/CountProcedureController";
+import { DetailProcedureController } from "./controllers/procedure/DetailProcedureService";
 
 export const router = Router();
 
@@ -38,4 +40,14 @@ router.get(
   "/procedure/check",
   isAuthenticated,
   new CheckSubscriptionController().handle
+);
+router.get(
+  "/procedure/count",
+  isAuthenticated,
+  new CountProcedureController().handle
+);
+router.get(
+  "/procedure/detail",
+  isAuthenticated,
+  new DetailProcedureController().handle
 );
