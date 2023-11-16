@@ -8,6 +8,7 @@ import { UpdateUserController } from "./controllers/user/UpdateUserController";
 import { CreateProcedureController } from "./controllers/procedure/CreateProcedureController";
 import { ListProcedureController } from "./controllers/procedure/ListProcedureController";
 import { UpdateProcedureController } from "./controllers/procedure/UpdateProcedureController";
+import { CheckSubscriptionController } from "./controllers/procedure/CheckSubscriptionController";
 
 export const router = Router();
 
@@ -32,4 +33,9 @@ router.put(
   "/procedure",
   isAuthenticated,
   new UpdateProcedureController().handle
+);
+router.get(
+  "/procedure/check",
+  isAuthenticated,
+  new CheckSubscriptionController().handle
 );
