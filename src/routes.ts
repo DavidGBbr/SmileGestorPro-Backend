@@ -6,6 +6,7 @@ import { isAuthenticated } from "./middlewares/isAuthenticated";
 import { UpdateUserController } from "./controllers/user/UpdateUserController";
 
 import { CreateProcedureController } from "./controllers/procedure/CreateProcedureController";
+import { ListProcedureController } from "./controllers/procedure/ListProcedureController";
 
 export const router = Router();
 
@@ -20,4 +21,9 @@ router.post(
   "/procedure",
   isAuthenticated,
   new CreateProcedureController().handle
+);
+router.get(
+  "/procedures",
+  isAuthenticated,
+  new ListProcedureController().handle
 );
