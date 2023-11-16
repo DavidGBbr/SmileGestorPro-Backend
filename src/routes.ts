@@ -7,6 +7,7 @@ import { UpdateUserController } from "./controllers/user/UpdateUserController";
 
 import { CreateProcedureController } from "./controllers/procedure/CreateProcedureController";
 import { ListProcedureController } from "./controllers/procedure/ListProcedureController";
+import { UpdateProcedureController } from "./controllers/procedure/UpdateProcedureController";
 
 export const router = Router();
 
@@ -26,4 +27,9 @@ router.get(
   "/procedures",
   isAuthenticated,
   new ListProcedureController().handle
+);
+router.put(
+  "/procedure",
+  isAuthenticated,
+  new UpdateProcedureController().handle
 );
