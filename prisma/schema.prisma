@@ -24,7 +24,7 @@ model User {
   @@map("users")
   subscriptions Subscription?
   procedures Procedure[]
-  services Service[]
+  service Service[]
 }
 
 model Subscription {
@@ -64,9 +64,8 @@ model Service {
   updated_at DateTime? @default(now())
 
   @@map("services")
-  user User @relation(fields: [userId], references: [id])
-  userId String @unique 
-
-  procedureId String @unique
-  procedure Procedure @relation(fields: [procedureId], references: [id])
+  procedure Procedure @relation(fields: [procedure_id], references: [id])
+  procedure_id String
+  user User @relation(fields: [user_id], references: [id])
+  user_id String
 }
