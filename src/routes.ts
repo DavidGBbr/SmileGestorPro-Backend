@@ -13,6 +13,7 @@ import { CountProcedureController } from "./controllers/procedure/CountProcedure
 import { DetailProcedureController } from "./controllers/procedure/DetailProcedureService";
 import { NewScheduleController } from "./controllers/schedule/NewScheduleController";
 import { ListScheduleController } from "./controllers/schedule/ListScheduleController";
+import { FinishScheduleController } from "./controllers/schedule/FinishScheduleController";
 
 export const router = Router();
 
@@ -57,3 +58,8 @@ router.get(
 //Schedule routes
 router.post("/schedule", isAuthenticated, new NewScheduleController().handle);
 router.get("/schedule", isAuthenticated, new ListScheduleController().handle);
+router.delete(
+  "/schedule",
+  isAuthenticated,
+  new FinishScheduleController().handle
+);
