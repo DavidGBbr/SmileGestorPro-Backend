@@ -1,4 +1,4 @@
-import { Router, Request, Response } from "express";
+import express, { Router } from "express";
 import { CreateUserController } from "./controllers/user/CreateUserController";
 import { AuthUserController } from "./controllers/user/AuthUserController";
 import { DetailUserController } from "./controllers/user/DetailUserController";
@@ -14,6 +14,9 @@ import { DetailProcedureController } from "./controllers/procedure/DetailProcedu
 import { NewScheduleController } from "./controllers/schedule/NewScheduleController";
 import { ListScheduleController } from "./controllers/schedule/ListScheduleController";
 import { FinishScheduleController } from "./controllers/schedule/FinishScheduleController";
+import { subscribeController } from "./controllers/subscrition/SubscribeController";
+import { WebhooksController } from "./controllers/subscrition/WebhooksController";
+import { CreatePortalController } from "./controllers/subscrition/CreatePortalController";
 
 export const router = Router();
 
@@ -62,4 +65,17 @@ router.delete(
   "/schedule",
   isAuthenticated,
   new FinishScheduleController().handle
+);
+
+//Payments routes
+router.post("/subscribe", isAuthenticated, new subscribeController().handle);
+router.post(
+  "/webhooks",
+  express.raw({ type: "application/json" }),
+  new WebhooksController().handle
+);
+router.post(
+  "/create-portal",
+  isAuthenticated,
+  new CreatePortalController().handle
 );
